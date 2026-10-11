@@ -141,6 +141,14 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
  table td input{max-width:46px!important;width:100%!important}
  .details{font-size:12px!important;gap:12px!important}
 }
+
+/* Darbalaukis: visas turinys 300 px desiniau, sąmata prie lango apačios */
+@media screen and (min-width: 1051px){
+ html,body{height:100%;overflow:hidden!important}
+ .wrap{height:100dvh;min-height:0;display:flex;flex-direction:column;width:calc(100% - 300px)!important;max-width:none!important;margin:0 0 0 300px!important;padding:12px 18px!important}
+ .bookscroll{flex:1 1 auto;min-height:100px;height:auto!important;max-height:none!important;overflow-y:auto!important}
+ .below{flex:0 0 auto;margin-top:auto!important}
+}
 </style></head><body><div class="wrap"><div class="bookscroll"><div id="book" class="grid"></div></div><div class="below"><section><div class="resetrow"><button onclick="resetAll()">Atkurti</button></div><table><thead><tr><th>ILIUSTRACIJOS</th><th>KIEKIS</th><th>VNT. KAINA</th><th>SUMA</th></tr></thead><tbody id="rows"></tbody><tfoot><tr class="total"><td colspan="3">BENDRA KAINA</td><td id="total"></td></tr></tfoot></table></section><section class="details"><div class="condition"><strong>APIMTIS:</strong><span>iliustracijų kiekis ir dydžiai gali keistis; kaina perskaičiuojama pagal pasirinktą apimtį.</span></div><div class="condition"><strong>TRUKMĖ:</strong><span>apie 3 mėnesiai nuo 20% avanso pervedimo dienos.</span></div><div class="condition"><strong>AUTORINĖS TEISĖS:</strong><span>Numatomos plačios iliustracijų ir personažų naudojimo teisės, išlaikant dailininko autorystę ir 5 % autorinį atlygį nuo komercinių pajamų. Detalios sąlygos derinamos sutartyje.</span></div><div class="condition"><strong>PATAISYMAI:</strong><span>Papildomi pataisymai ir pakeitimai, viršijantys sutartą darbų apimtį, apmokestinami papildomai; jų kaina suderinama iš anksto.</span></div></section></div></div>
 <script>const items=[
 {key:'cover',name:'Priekinis viršelis',price:1630,qty:1,color:'#6CAEB0'},
