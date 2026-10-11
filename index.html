@@ -180,6 +180,26 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
  .grid{grid-template-columns:minmax(0,1fr)!important}
  .below section:first-child{max-width:610px!important}
 }
+
+/* 2026-10-11: telefono miniatiūros vienodo dydžio, be išsipūtimo */
+.resetrow{margin-top:12px!important}
+@media screen and (max-width:700px){
+ .bookscroll{height:clamp(330px,51dvh,540px)!important;max-height:none!important;padding-top:12px!important}
+ .grid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(0,300px))!important;justify-content:center!important;align-content:start!important;gap:18px 12px!important}
+ .spread{width:100%!important;max-width:300px!important;min-width:0!important}
+ .leaves{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:2px!important}
+ .leaf{aspect-ratio:.79!important;width:100%!important;max-width:none!important;min-width:0!important}
+ .resetrow{margin:12px 0 9px!important}
+}
+@media screen and (max-width:700px) and (orientation:landscape){
+ .grid{grid-template-columns:repeat(auto-fit, minmax(0,260px))!important;justify-content:center!important;gap:18px 12px!important}
+ .spread{max-width:260px!important}
+ .bookscroll{height:clamp(230px,55dvh,420px)!important}
+}
+@media screen and (max-width:330px){
+ .grid{grid-template-columns:minmax(0,1fr)!important}
+ .spread{max-width:100%!important}
+}
 </style></head><body><div class="wrap"><div class="bookscroll"><div id="book" class="grid"></div></div><div class="below"><section><div class="resetrow"><button onclick="resetAll()">Atkurti</button></div><table><thead><tr><th>ILIUSTRACIJOS</th><th>KIEKIS</th><th>VNT. KAINA</th><th>SUMA</th></tr></thead><tbody id="rows"></tbody><tfoot><tr class="total"><td colspan="3">BENDRA KAINA</td><td id="total"></td></tr></tfoot></table></section><section class="details"><div class="condition"><strong>APIMTIS:</strong><span>iliustracijų kiekis ir dydžiai gali keistis; kaina perskaičiuojama pagal pasirinktą apimtį.</span></div><div class="condition"><strong>TRUKMĖ:</strong><span>apie 3 mėnesiai nuo 20% avanso pervedimo dienos.</span></div><div class="condition"><strong>AUTORINĖS TEISĖS:</strong><span>Numatomos plačios iliustracijų ir personažų naudojimo teisės, išlaikant dailininko autorystę ir 5 % autorinį atlygį nuo komercinių pajamų. Detalios sąlygos derinamos sutartyje.</span></div><div class="condition"><strong>PATAISYMAI:</strong><span>Papildomi pataisymai ir pakeitimai, viršijantys sutartą darbų apimtį, apmokestinami papildomai; jų kaina suderinama iš anksto.</span></div></section></div></div>
 <script>const items=[
 {key:'cover',name:'Priekinis viršelis',price:1630,qty:1,color:'#6CAEB0'},
