@@ -200,7 +200,62 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
  .grid{grid-template-columns:minmax(0,1fr)!important}
  .spread{max-width:100%!important}
 }
-</style></head><body><div class="wrap"><div class="bookscroll"><div id="book" class="grid"></div></div><div class="below"><section><div class="resetrow"><button onclick="resetAll()">Atkurti</button></div><table><thead><tr><th>ILIUSTRACIJOS</th><th>KIEKIS</th><th>VNT. KAINA</th><th>SUMA</th></tr></thead><tbody id="rows"></tbody><tfoot><tr class="total"><td colspan="3">BENDRA KAINA</td><td id="total"></td></tr></tfoot></table></section><section class="details"><div class="condition"><strong>APIMTIS:</strong><span>iliustracijų kiekis ir dydžiai gali keistis; kaina perskaičiuojama pagal pasirinktą apimtį.</span></div><div class="condition"><strong>TRUKMĖ:</strong><span>apie 3 mėnesiai nuo 20% avanso pervedimo dienos.</span></div><div class="condition"><strong>AUTORINĖS TEISĖS:</strong><span>Numatomos plačios iliustracijų ir personažų naudojimo teisės, išlaikant dailininko autorystę ir 5 % autorinį atlygį nuo komercinių pajamų. Detalios sąlygos derinamos sutartyje.</span></div><div class="condition"><strong>PATAISYMAI:</strong><span>Papildomi pataisymai ir pakeitimai, viršijantys sutartą darbų apimtį, apmokestinami papildomai; jų kaina suderinama iš anksto.</span></div></section></div></div>
+
+/* 2026-10-11: stabilus telefono vertikalus ir horizontalus maketas */
+.page-title{font-size:19px;font-weight:600;line-height:1.3;margin:0 0 15px;color:#f4f6f6;text-align:center;flex:0 0 auto}
+.price-note{font-size:10px;line-height:1.5;color:#cdd5d6;margin:13px 0 0;max-width:750px}
+@media screen and (min-width:1051px){
+ .wrap{padding-bottom:100px!important}
+ .below{max-height:min(60dvh,560px)!important}
+}
+@media screen and (max-width:1050px){.page-title{margin-bottom:12px}}
+@media screen and (max-width:700px){
+ html,body{overflow-x:hidden!important}
+ .wrap{padding:12px 12px 25px!important;width:100%!important;margin:0!important;max-width:none!important;display:block!important;height:auto!important;overflow:visible!important}
+ .page-title{font-size:17px;margin-bottom:10px}
+ .bookscroll{height:clamp(250px,44dvh,410px)!important;max-height:none!important;min-height:0!important;overflow-x:hidden!important;overflow-y:auto!important;padding:10px 2px 18px!important}
+ .grid{display:grid!important;grid-template-columns:repeat(auto-fill, 156px)!important;justify-content:center!important;align-content:start!important;gap:17px 12px!important}
+ .spread{width:156px!important;min-width:156px!important;max-width:156px!important;margin:0!important}
+ .leaves{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:2px!important;width:156px!important}
+ .leaf{width:100%!important;min-width:0!important;max-width:none!important;aspect-ratio:.79!important}
+ .spreadname{font-size:10px!important;min-height:12px!important}
+ .illustration{font-size:7px!important}
+ .num{font-size:8px!important}
+ .below{display:flex!important;flex-direction:column!important;overflow:visible!important;max-height:none!important;margin-top:8px!important}
+ .below section:first-child{width:100%!important;max-width:610px!important;min-width:0!important}
+ .below section.details{width:100%!important;min-width:0!important;max-width:none!important}
+ .resetrow{margin:16px 0 10px!important}
+ .price-note{margin-top:16px;font-size:10px}
+}
+@media screen and (max-width:700px) and (orientation:landscape){
+ .wrap{padding:12px 14px 25px!important}
+ .bookscroll{height:clamp(170px,45dvh,310px)!important}
+ .grid{grid-template-columns:repeat(auto-fill,156px)!important;justify-content:center!important;gap:15px 12px!important}
+ .spread{width:156px!important;min-width:156px!important;max-width:156px!important}
+ .leaves{width:156px!important}
+}
+/* iPhone gulsčiai gali turėti >700px CSS pločio: atskira aukščio taisyklė */
+@media screen and (orientation:landscape) and (max-height:550px) and (max-width:1100px){
+ html,body{height:auto!important;overflow-x:hidden!important;overflow-y:auto!important}
+ .wrap{width:100%!important;max-width:none!important;margin:0!important;padding:12px 16px 28px!important;height:auto!important;min-height:0!important;display:block!important;overflow:visible!important}
+ .page-title{font-size:17px!important;margin:0 0 10px!important}
+ .bookscroll{height:clamp(155px,48dvh,290px)!important;max-height:none!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;padding:8px 2px 15px!important}
+ .grid{display:grid!important;grid-template-columns:repeat(auto-fill,156px)!important;justify-content:center!important;align-content:start!important;gap:14px 12px!important}
+ .spread{width:156px!important;min-width:156px!important;max-width:156px!important}
+ .leaves{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:2px!important;width:156px!important}
+ .leaf{width:100%!important;min-width:0!important;max-width:none!important;aspect-ratio:.79!important}
+ .spreadname{font-size:10px!important}
+ .illustration{font-size:7px!important}
+ .below{display:flex!important;flex-wrap:wrap!important;align-items:flex-start!important;gap:14px!important;max-height:none!important;overflow:visible!important;margin:12px 0 0!important;width:100%!important}
+ .below section:first-child{flex:0 1 610px!important;min-width:0!important;max-width:610px!important;width:100%!important}
+ .below section.details{flex:1 1 290px!important;min-width:0!important;max-width:none!important;width:auto!important}
+ .resetrow{margin:15px 0 10px!important}
+}
+
+.page-title{text-align:center!important}
+.page-subtitle{font-size:12px;font-weight:400;letter-spacing:.02em;text-align:center;color:#d4d7d8;margin:-9px 0 15px;flex:0 0 auto}@media(max-width:1050px){.page-subtitle{margin:-5px 0 12px}}
+.price-note{margin-top:23px!important;text-align:center!important;margin-left:auto!important;margin-right:auto!important;max-width:750px!important}
+</style></head><body><div class="wrap"><h1 class="page-title">Knygos iliustracijų skaičiuoklė</h1><p class="page-subtitle">personalizuotas pasiūlymas Varlinykui</p><div class="bookscroll"><div id="book" class="grid"></div></div><div class="below"><section><div class="resetrow"><button onclick="resetAll()">Atkurti</button></div><table><thead><tr><th>ILIUSTRACIJOS</th><th>KIEKIS</th><th>VNT. KAINA</th><th>SUMA</th></tr></thead><tbody id="rows"></tbody><tfoot><tr class="total"><td colspan="3">BENDRA KAINA</td><td id="total"></td></tr></tfoot></table></section><section class="details"><div class="condition"><strong>APIMTIS:</strong><span>iliustracijų kiekis ir dydžiai gali keistis; kaina perskaičiuojama pagal pasirinktą apimtį.</span></div><div class="condition"><strong>TRUKMĖ:</strong><span><span id="duration">apie 3 mėnesius</span> nuo 20 % avanso pervedimo dienos. Preliminarus terminas tikslinamas pagal darbų sudėtingumą ir derinimą.</span></div><div class="condition"><strong>AUTORINĖS TEISĖS:</strong><span>Numatomos plačios iliustracijų ir personažų naudojimo teisės, išlaikant dailininko autorystę ir 5 % autorinį atlygį nuo komercinių pajamų. Detalios sąlygos derinamos sutartyje.</span></div><div class="condition"><strong>PATAISYMAI:</strong><span>Papildomi pataisymai ir pakeitimai, viršijantys sutartą darbų apimtį, apmokestinami papildomai; jų kaina suderinama iš anksto.</span></div></section></div><p class="price-note">Kainos orientacinės, nustatytos atsižvelgiant į tarptautinę iliustracijų rinkos praktiką, darbų sudėtingumą ir autorinę patirtį. Galutinė sąmata derinama individualiai.</p></div>
 <script>const items=[
 {key:'cover',name:'Priekinis viršelis',price:1630,qty:1,color:'#6CAEB0'},
 {key:'ornament',name:'Atvartas (ornamentai)',price:470,qty:1,color:'#C4D6B4'},
@@ -289,6 +344,15 @@ function pageHTML(p,i,left=false){const kind=p.kind;let inactive=['cover','back'
 function render(){
  let total=0;items.forEach((x,i)=>{let sum=x.price*x.qty;total+=sum;document.getElementById('sum'+i).textContent=eur(sum)});
  document.getElementById('total').textContent=eur(total);
+ // Trukmė apskaičiuojama pagal santykinį darbų krūvį, įskaitant fiksuotą personažų kūrimą.
+ const weights={cover:5,ornament:3,spread:5,full:4,half:2,vignette:1,back:3,design:15};
+ const base=items.reduce((n,x,i)=>n+weights[x.key]*defaults[i],0);
+ const workload=items.reduce((n,x)=>n+weights[x.key]*x.qty,0);
+ const days=Math.max(5,Math.round(63*workload/base));
+ const weeks=Math.max(1,Math.round(days/5));
+ const months=days/21;
+ const durationText=months<1.5?`apie ${weeks} sav.`:`apie ${new Intl.NumberFormat('lt-LT',{maximumFractionDigits:1}).format(months)} mėn.`;
+ document.getElementById('duration').textContent=durationText;
  const {pages,textCount}=build();let out='';
  // Viršeliai visada turi savo vietas; jų 0/1 nekeičia vidinių puslapių.
  // Ornamentas ir jo kartojimas yra nedalomi dviejų gretimų puslapių atvartai.
