@@ -157,6 +157,29 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
  .below section:first-child{flex:1 1 520px;min-width:0}
  .below section.details{flex:1 1 390px;min-width:0;max-width:none!important}
 }
+
+/* 2026-10: kompaktiška lentelė, 50px nuo apačios ir dešinės; stabilios miniatiūros */
+@media screen and (min-width:1051px){
+ .wrap{width:calc(100% - 150px)!important;margin-left:100px!important;margin-right:50px!important;padding-bottom:50px!important}
+ .below{width:100%!important;max-height:min(62dvh,560px)!important;gap:20px!important;align-items:flex-end!important}
+ .below section:first-child{flex:0 1 610px!important;width:min(100%,610px)!important;max-width:610px!important;min-width:0!important}
+ .below section.details{flex:1 1 330px!important;min-width:280px!important}
+ .bookscroll{min-height:80px!important}
+ .grid{grid-template-columns:repeat(auto-fill,minmax(170px,190px))!important;justify-content:start!important;align-content:start!important;gap:20px!important}
+ .spread{min-width:0!important;width:100%!important;max-width:190px!important}
+ .leaves{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:2px!important;width:100%!important}
+ .leaf{width:100%!important;min-width:0!important;max-width:none!important;aspect-ratio:.79!important}
+}
+@media screen and (min-width:701px) and (max-width:1050px){
+ .wrap{padding-bottom:50px!important;padding-right:50px!important}
+ .below section:first-child{flex:0 1 610px!important;max-width:610px!important}
+ .grid{grid-template-columns:repeat(auto-fill,minmax(150px,180px))!important;justify-content:start!important;align-content:start!important}
+ .spread{max-width:180px!important}
+}
+@media screen and (max-width:700px){
+ .grid{grid-template-columns:minmax(0,1fr)!important}
+ .below section:first-child{max-width:610px!important}
+}
 </style></head><body><div class="wrap"><div class="bookscroll"><div id="book" class="grid"></div></div><div class="below"><section><div class="resetrow"><button onclick="resetAll()">Atkurti</button></div><table><thead><tr><th>ILIUSTRACIJOS</th><th>KIEKIS</th><th>VNT. KAINA</th><th>SUMA</th></tr></thead><tbody id="rows"></tbody><tfoot><tr class="total"><td colspan="3">BENDRA KAINA</td><td id="total"></td></tr></tfoot></table></section><section class="details"><div class="condition"><strong>APIMTIS:</strong><span>iliustracijų kiekis ir dydžiai gali keistis; kaina perskaičiuojama pagal pasirinktą apimtį.</span></div><div class="condition"><strong>TRUKMĖ:</strong><span>apie 3 mėnesiai nuo 20% avanso pervedimo dienos.</span></div><div class="condition"><strong>AUTORINĖS TEISĖS:</strong><span>Numatomos plačios iliustracijų ir personažų naudojimo teisės, išlaikant dailininko autorystę ir 5 % autorinį atlygį nuo komercinių pajamų. Detalios sąlygos derinamos sutartyje.</span></div><div class="condition"><strong>PATAISYMAI:</strong><span>Papildomi pataisymai ir pakeitimai, viršijantys sutartą darbų apimtį, apmokestinami papildomai; jų kaina suderinama iš anksto.</span></div></section></div></div>
 <script>const items=[
 {key:'cover',name:'Priekinis viršelis',price:1630,qty:1,color:'#6CAEB0'},
