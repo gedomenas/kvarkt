@@ -255,7 +255,7 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
 .page-title{text-align:center!important}
 .page-subtitle{font-size:12px;font-weight:400;letter-spacing:.02em;text-align:center;color:#d4d7d8;margin:-9px 0 15px;flex:0 0 auto}@media(max-width:1050px){.page-subtitle{margin:-5px 0 12px}}
 .price-note{margin-top:23px!important;text-align:center!important;margin-left:auto!important;margin-right:auto!important;max-width:750px!important}
-</style></head><body><div class="wrap"><h1 class="page-title">Knygos iliustracijų skaičiuoklė</h1><p class="page-subtitle">personalizuotas pasiūlymas Varlinykui</p><div class="bookscroll"><div id="book" class="grid"></div></div><div class="below"><section><div class="resetrow"><button onclick="resetAll()">Atkurti</button></div><table><thead><tr><th>ILIUSTRACIJOS</th><th>KIEKIS</th><th>VNT. KAINA</th><th>SUMA</th></tr></thead><tbody id="rows"></tbody><tfoot><tr class="total"><td colspan="3">BENDRA KAINA</td><td id="total"></td></tr></tfoot></table></section><section class="details"><div class="condition"><strong>APIMTIS:</strong><span>iliustracijų kiekis ir dydžiai gali keistis; kaina perskaičiuojama pagal pasirinktą apimtį.</span></div><div class="condition"><strong>TRUKMĖ:</strong><span><span id="duration">apie 3 mėnesius</span> nuo 20 % avanso pervedimo dienos. Preliminarus terminas tikslinamas pagal darbų sudėtingumą ir derinimą.</span></div><div class="condition"><strong>AUTORINĖS TEISĖS:</strong><span>Numatomos plačios iliustracijų ir personažų naudojimo teisės, išlaikant dailininko autorystę ir 5 % autorinį atlygį nuo komercinių pajamų. Detalios sąlygos derinamos sutartyje.</span></div><div class="condition"><strong>PATAISYMAI:</strong><span>Papildomi pataisymai ir pakeitimai, viršijantys sutartą darbų apimtį, apmokestinami papildomai; jų kaina suderinama iš anksto.</span></div></section></div><p class="price-note">Kainos orientacinės, nustatytos atsižvelgiant į tarptautinę iliustracijų rinkos praktiką, darbų sudėtingumą ir autorinę patirtį. Galutinė sąmata derinama individualiai.</p></div>
+</style></head><body><div class="wrap"><h1 class="page-title">Knygos iliustracijų skaičiuoklė</h1><p class="page-subtitle">personalizuotas pasiūlymas Varlinykui</p><div class="bookscroll"><div id="book" class="grid"></div></div><div class="below"><section><div class="resetrow"><button onclick="resetAll()">Atkurti</button></div><table><thead><tr><th>ILIUSTRACIJOS</th><th>KIEKIS</th><th>VNT. KAINA</th><th>SUMA</th></tr></thead><tbody id="rows"></tbody><tfoot><tr class="total"><td colspan="3">BENDRA KAINA</td><td id="total"></td></tr></tfoot></table></section><section class="details"><div class="condition"><strong>APIMTIS:</strong><span>iliustracijų kiekis ir dydžiai gali keistis; kaina perskaičiuojama pagal pasirinktą apimtį.</span></div><div class="condition"><strong>TRUKMĖ:</strong><span><span id="duration">apie 3–5 mėn.</span> nuo 20 % avanso pervedimo dienos. Preliminarus terminas tikslinamas pagal darbų sudėtingumą ir derinimą.</span></div><div class="condition"><strong>AUTORINĖS TEISĖS:</strong><span>Numatomos plačios iliustracijų ir personažų naudojimo teisės, išlaikant dailininko autorystę ir 5 % autorinį atlygį nuo komercinių pajamų. Detalios sąlygos derinamos sutartyje.</span></div><div class="condition"><strong>PATAISYMAI:</strong><span>Papildomi pataisymai ir pakeitimai, viršijantys sutartą darbų apimtį, apmokestinami papildomai; jų kaina suderinama iš anksto.</span></div></section></div><p class="price-note">Kainos orientacinės, nustatytos atsižvelgiant į tarptautinę iliustracijų rinkos praktiką, darbų sudėtingumą ir autorinę patirtį. Galutinė sąmata derinama individualiai.</p></div>
 <script>const items=[
 {key:'cover',name:'Priekinis viršelis',price:1630,qty:1,color:'#6CAEB0'},
 {key:'ornament',name:'Atvartas (ornamentai)',price:470,qty:1,color:'#C4D6B4'},
@@ -344,14 +344,15 @@ function pageHTML(p,i,left=false){const kind=p.kind;let inactive=['cover','back'
 function render(){
  let total=0;items.forEach((x,i)=>{let sum=x.price*x.qty;total+=sum;document.getElementById('sum'+i).textContent=eur(sum)});
  document.getElementById('total').textContent=eur(total);
- // Trukmė apskaičiuojama pagal santykinį darbų krūvį, įskaitant fiksuotą personažų kūrimą.
+ // Preliminarus 3–5 mėn. intervalas proporcingai keičiamas pagal iliustracijų apimtį.
  const weights={cover:5,ornament:3,spread:5,full:4,half:2,vignette:1,back:3,design:15};
  const base=items.reduce((n,x,i)=>n+weights[x.key]*defaults[i],0);
  const workload=items.reduce((n,x)=>n+weights[x.key]*x.qty,0);
- const days=Math.max(5,Math.round(63*workload/base));
- const weeks=Math.max(1,Math.round(days/5));
- const months=days/21;
- const durationText=months<1.5?`apie ${weeks} sav.`:`apie ${new Intl.NumberFormat('lt-LT',{maximumFractionDigits:1}).format(months)} mėn.`;
+ const ratio=workload/base;
+ const formatMonth=n=>new Intl.NumberFormat('lt-LT',{maximumFractionDigits:1}).format(n);
+ const minMonths=Math.max(0.5,Math.round(3*ratio*2)/2);
+ const maxMonths=Math.max(minMonths+0.5,Math.round(5*ratio*2)/2);
+ const durationText=`apie ${formatMonth(minMonths)}–${formatMonth(maxMonths)} mėn.`;
  document.getElementById('duration').textContent=durationText;
  const {pages,textCount}=build();let out='';
  // Viršeliai visada turi savo vietas; jų 0/1 nekeičia vidinių puslapių.
