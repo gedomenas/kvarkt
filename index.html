@@ -1,0 +1,267 @@
+<!doctype html><html lang="lt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kvarksynas – kompaktiškas interaktyvus maketas</title><style>
+*{box-sizing:border-box}body{margin:0;background:#42464a;color:#fff;font:12px Arial,sans-serif}.wrap{max-width:1680px;margin:auto;padding:12px 18px}h1{font-size:17px;text-align:center;margin:0 0 5px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px}.top p{margin:0;color:#d2d8da;font-size:11px}button{background:#6a8385;color:white;border:1px solid #a1b1b2;border-radius:5px;padding:7px 11px;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:20px}.spread{min-width:0}.spreadname{font-size:9px;text-align:center;color:#dbe0e1;margin-bottom:3px}.leaves{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:1px!important;gap:1px!important;align-items:stretch}.leaf.blank{background:#fff!important;box-shadow:none!important;border:none!important}.leaf.blank.outer{background:#42464a!important}.leaf.inactive{background:#b7b9ba!important;opacity:.55}.leaf.inactive::after{content:"";position:absolute;left:5%;top:50%;width:90%;border-top:3px solid #b85050;transform:rotate(-38deg);z-index:2}.leaf{border-radius:4px;position:relative;aspect-ratio:.79;background:white;color:#42464a;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:3px}.num{position:absolute;bottom:2px;right:3px;font-size:8px;color:#6e7375}.illustration{border-radius:3px;width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;font-size:clamp(3px,.36vw,7px);font-weight:bold;padding:2px;overflow-wrap:anywhere;word-break:break-word;line-height:1.1}.illustration.half{position:absolute;left:3px;right:3px;width:auto;height:47%;margin:0;top:var(--hy,50%);z-index:2}.leaf:has(.illustration.half) .lines{position:absolute;inset:7% 7%;width:86%;height:84%;justify-content:space-around;z-index:0}.leaf:has(.illustration.half) .lines i{height:1px}.illustration.vignette{position:absolute;width:43.35%;height:25.5%;margin:0;left:var(--vx,38%);top:var(--vy,34%)}.lines{width:90%;display:flex;flex-direction:column;gap:4px}.leaf:has(.illustration.vignette) .lines{position:absolute;inset:8% 6%;width:88%;height:85%;justify-content:space-around;z-index:0}.leaf:has(.illustration.vignette) .illustration{z-index:1}.lines i{height:1px;background:#c4c4c4;width:100%}.lines i:nth-child(3n){width:70%}.leaf.left::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(to left,rgba(20,24,27,.30),rgba(20,24,27,0))}.bookscroll{height:clamp(240px,45vh,480px);overflow-y:auto;overscroll-behavior:contain;padding:5px 6px 12px 0;scrollbar-color:#91a4a6 #30363a}.below{display:grid;grid-template-columns:minmax(0,1fr) minmax(390px,0.78fr);gap:12px;margin-top:7px}.details{font-size:11px;line-height:1.5;color:#e1e6e8;padding:6px}.details p{margin:8px 0}.details strong{color:#fff}table{border-collapse:collapse;width:100%;table-layout:fixed;color:#243033;font-size:11px}td,th{padding:3px 5px;border:1px solid #d6dada66}th{background:#30383c;color:white}th:first-child{width:44%}th:nth-child(2){width:16%}th:nth-child(3){width:19%}td:not(:first-child),th:not(:first-child){text-align:right}td input{width:43px;font:inherit;padding:3px;text-align:center;background:#fff;border:1px solid #788d90;border-radius:3px;color:#243033}td .fixed{font-weight:bold;display:inline-block;width:43px;text-align:center}.total td{background:#e7e8e7;font-size:15px;font-weight:bold}.below section:last-child{border-radius:0;overflow:visible;border:none;background:transparent;padding:0}.below section:last-child table{border-radius:0;overflow:visible}.below section:last-child tr:first-child th:first-child{border-top-left-radius:7px}.below section:last-child tr:first-child th:last-child{border-top-right-radius:7px}.foot{font-size:10px;color:#d7dcde;margin:7px 0 0}.warn{color:#ffda9a}.status{font-weight:bold;margin-top:8px}@media(max-width:1050px){.grid{grid-template-columns:repeat(6,minmax(0,1fr))}.below{grid-template-columns:1fr}}@media(max-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.wrap{padding:8px}.top{flex-wrap:wrap}}@media print{.leaf.left::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(to left,rgba(20,24,27,.30),rgba(20,24,27,0))}.bookscroll{height:auto;overflow:visible}body{print-color-adjust:exact;-webkit-print-color-adjust:exact}.wrap{padding:3mm}.top,button,.foot{display:none}.grid{grid-template-columns:repeat(11,1fr)}.below{grid-template-columns:1fr 1fr}.spread{break-inside:avoid}input{border:0!important;background:transparent!important}}
+table tr:first-child th{border-top:0}table tr:last-child td{border-bottom:0}table tr > :first-child{border-left:0}table tr > :last-child{border-right:0}.below section:last-child{outline:0!important;box-shadow:none!important;border:0!important}
+
+/* Galutinis išdėstymas */
+.bookscroll{padding-top:25px}
+.below{grid-template-columns:minmax(0,1fr) minmax(340px,.78fr);align-items:stretch}
+.below section:first-child{border:0;outline:0;box-shadow:none;border-radius:0;overflow:visible}
+.below .details{display:flex;flex-direction:column;justify-content:flex-end;text-align:right;align-items:flex-end;padding:6px 4px 0 14px}
+.below .details p{max-width:530px}
+@media(max-width:1050px){.below{grid-template-columns:1fr}}
+@media print{.bookscroll{padding-top:15px}.below{grid-template-columns:1fr 1fr}}
+.details{text-align:left!important;align-self:end!important;justify-self:stretch!important}.details p{text-align:left!important}.total td{background:#62686b!important;color:#151a1c!important}
+/* Kompaktiška sąmata ir tvarkingas sąlygų stulpelis */
+.below{grid-template-columns:minmax(0, 650px) minmax(0, 1fr);gap:26px;align-items:end}
+.below section:first-child{width:100%;max-width:650px}
+table{table-layout:auto;width:100%}
+th:first-child{width:40%}th:nth-child(2){width:13%}th:nth-child(3){width:23%}
+.details{display:flex;flex-direction:column;justify-content:flex-end;align-self:end;gap:20px;padding:0 0 3px 0;max-width:680px}
+.details p{margin:0!important;text-align:left!important}
+.details strong{display:inline-block;min-width:132px;vertical-align:top}
+.details .condition{display:grid;grid-template-columns:132px minmax(0,1fr);column-gap:20px;align-items:start}
+.details .condition strong{min-width:0}
+@media(max-width:1050px){.below{grid-template-columns:1fr;gap:15px}.below section:first-child{max-width:650px}}
+@media print{.below{grid-template-columns: 1fr 1fr;gap:12px}.details strong{min-width:90px}.details .condition{grid-template-columns:90px 1fr}}
+/* Visi sąlygų tekstai lygiuojami pagal kairįjį kraštą */
+.below .details{align-items:stretch!important;text-align:left!important;width:100%;max-width:none}
+.below .details .condition{display:block!important;text-align:left!important;width:100%}
+.below .details .condition strong{display:inline!important;min-width:0!important;margin-right:5px}
+.below .details .condition span{display:inline!important;text-align:left!important}
+
+/* Puslapių miniatiūros ~20 % didesnės */
+.grid{grid-template-columns:repeat(9,minmax(0,1fr))}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media print{.grid{grid-template-columns:repeat(9,minmax(0,1fr))}}
+/* Puslapiai papildomai padidinti 30 % (9 -> 7 stulpeliai) */
+.grid{grid-template-columns:repeat(7,minmax(0,1fr))}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:650px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media print{.grid{grid-template-columns:repeat(7,minmax(0,1fr))}}
+/* Suapvalinti viso įterpto maketo išoriniai kampai */
+html{background:transparent}
+body{border-radius:0;overflow:visible}
+.wrap{border-radius:0;overflow:visible}
+/* Apatinė sąmatos ir sąlygų dalis nuleista žemiau */
+.below{margin-top:0px}
+@media print{.below{margin-top:20px}}
+/* Centruotos vieneto kainos ir sumos */
+table th:nth-child(3),table th:nth-child(4),table td:nth-child(3),table td:nth-child(4){text-align:center!important}
+table tfoot .total td:last-child{text-align:center!important}
+
+/* Didesne virsutine maketo sritis, kad puslapiai iskart tilptu be vidinio slinkimo */
+.bookscroll{height:calc(clamp(240px,45vh,480px) + 300px)}
+@media print{.bookscroll{height:auto}}
+
+/* Vienodas teksto eilučių užpildymas per visą puslapio aukštį */
+.leaf .lines{position:absolute;inset:6% 7%;width:86%;height:88%;display:flex;flex-direction:column;justify-content:space-between;gap:0;z-index:0}
+.leaf .lines i{display:block;flex:0 0 1px;height:1px;width:100%;background:#bfc4c5}
+.leaf .lines i:nth-child(3n){width:100%}
+.leaf .lines i:last-child{width:72%}
+.leaf:has(.illustration.half) .lines,.leaf:has(.illustration.vignette) .lines{inset:6% 7%;width:86%;height:88%;justify-content:space-between}
+.resetrow{display:flex;justify-content:flex-start;margin-top:9px}
+.resetrow button{font-size:11px;padding:5px 12px}
+.resetrow button{border:0!important;outline:0!important;box-shadow:none!important}
+/* Atkurti centruotas virš lentelės; sąlygų apačia sutampa su bendros kainos apačia */
+.details .condition{min-width:0;overflow:visible}
+.details .condition strong,.details .condition span{overflow:visible;overflow-wrap:break-word}
+.details{overflow:visible!important}
+.resetrow{justify-content:center;margin:0 0 8px}
+.below .details{align-self:end!important;justify-content:flex-end!important;padding-bottom:0!important;margin-bottom:0!important}
+.below .details .condition:last-child{margin-bottom:0!important}
+
+/* Google Sites: natūralus aukštis be tuščio 300 px tarpo ir vidinio slinkimo */
+.bookscroll{height:auto!important;max-height:none!important;overflow:visible!important;overscroll-behavior:auto!important;padding-bottom:12px}
+.below{margin-top:12px!important}
+/* Platesnės miniatiūros siauresniame Google Sites rėmelyje */
+.grid{grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:20px!important}
+@media(max-width:1250px){.grid{grid-template-columns:repeat(6,minmax(0,1fr))!important}}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}}
+@media(max-width:800px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+@media(max-width:580px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:390px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media print{.grid{grid-template-columns:repeat(7,minmax(0,1fr))!important}}
+
+/* Puslapių zona slenka savarankiškai, sąmata lieka vietoje */
+.bookscroll{height:640px!important;max-height:640px!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain!important;scrollbar-gutter:stable}
+@media(max-width:650px){.bookscroll{height:520px!important;max-height:520px!important}}
+@media print{.bookscroll{height:auto!important;max-height:none!important;overflow:visible!important}}
+
+/* Sąmatos lentelės visi keturi kampai */
+.below section:first-child table{border-collapse:separate!important;border-spacing:0!important;border-radius:12px!important;overflow:hidden!important;clip-path:inset(0 round 12px)}
+.below section:first-child table thead tr:first-child th:first-child{border-top-left-radius:12px!important}
+.below section:first-child table thead tr:first-child th:last-child{border-top-right-radius:12px!important}
+.below section:first-child table tfoot tr:last-child td:first-child{border-bottom-left-radius:12px!important}
+.below section:first-child table tfoot tr:last-child td:last-child{border-bottom-right-radius:12px!important}
+/* Atkurti – toks pats baltas fonas kaip kiekio laukelių */
+.resetrow button{background:#fff!important;color:#243033!important;border:1px solid #788d90!important;border-radius:3px!important;box-shadow:none!important}
+
+/* Mobilusis ekranas ir Google Sites įterpimas */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+.wrap{width:100%;max-width:100%;min-width:0}
+@media(max-width:650px){
+ .wrap{padding:8px 7px!important}
+ .bookscroll{height:52vh!important;min-height:310px!important;max-height:520px!important;scrollbar-gutter:auto!important;padding-top:8px!important}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:15px 10px!important}
+ .spreadname{font-size:10px!important;line-height:1.2;min-height:13px}
+ .leaf{min-width:0;padding:2px}
+ .illustration{font-size:clamp(5px,1.6vw,9px)!important}
+ .below{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:14px!important;margin-top:10px!important}
+ .below section:first-child{width:100%!important;max-width:none!important;min-width:0!important}
+ .below section:first-child table{width:100%!important;table-layout:fixed!important;font-size:10px!important}
+ table th:first-child{width:40%!important}table th:nth-child(2){width:16%!important}table th:nth-child(3){width:23%!important}table th:nth-child(4){width:21%!important}
+ table td,table th{padding:5px 2px!important;overflow-wrap:anywhere}
+ table td input{width:100%!important;max-width:42px!important;min-width:0!important}
+ .total td{font-size:12px!important}
+ .details{width:100%!important;max-width:100%!important;padding:4px 0 14px!important;gap:13px!important;font-size:11px!important}
+ .details .condition{width:100%!important;overflow-wrap:anywhere!important}
+ .resetrow{margin:0 0 8px!important}
+}
+@media(max-width:350px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px 7px!important}.spreadname{font-size:9px!important}table{font-size:9px!important}}
+@media print{.bookscroll{height:auto!important;max-height:none!important;overflow:visible!important}}
+
+/* Mobiliojo Google Sites iframe pataisa: vienas pilnas atvartas eilutėje */
+@media(max-width:700px){
+ html,body{min-width:0!important;width:100%!important;overflow-x:hidden!important}
+ .wrap{padding:12px 10px!important}
+ .bookscroll{height:540px!important;max-height:540px!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;padding:8px 4px 12px!important}
+ .grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:20px!important}
+ .spread{width:100%!important;min-width:0!important;max-width:100%!important}
+ .spreadname{font-size:12px!important;margin-bottom:7px!important;min-height:0!important}
+ .leaves{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:3px!important;align-items:stretch!important;width:100%!important}
+ .leaf{width:100%!important;min-width:0!important;aspect-ratio:.79!important;max-width:none!important;padding:3px!important}
+ .illustration{font-size:clamp(8px,2.3vw,13px)!important}
+ .num{font-size:10px!important}
+ .below{display:flex!important;flex-direction:column!important;gap:14px!important;min-width:0!important}
+ .below section{min-width:0!important;width:100%!important}
+ .below section:first-child table{width:100%!important;table-layout:fixed!important;font-size:clamp(9px,2.5vw,12px)!important}
+ table th:first-child{width:39%!important}table th:nth-child(2){width:15%!important}table th:nth-child(3){width:24%!important}table th:nth-child(4){width:22%!important}
+ table td,table th{padding:6px 3px!important;word-break:normal!important;overflow-wrap:break-word!important}
+ table td input{max-width:46px!important;width:100%!important}
+ .details{font-size:12px!important;gap:12px!important}
+}
+</style></head><body><div class="wrap"><div class="bookscroll"><div id="book" class="grid"></div></div><div class="below"><section><div class="resetrow"><button onclick="resetAll()">Atkurti</button></div><table><thead><tr><th>ILIUSTRACIJOS</th><th>KIEKIS</th><th>VNT. KAINA</th><th>SUMA</th></tr></thead><tbody id="rows"></tbody><tfoot><tr class="total"><td colspan="3">BENDRA KAINA</td><td id="total"></td></tr></tfoot></table></section><section class="details"><div class="condition"><strong>APIMTIS:</strong><span>iliustracijų kiekis ir dydžiai gali keistis; kaina perskaičiuojama pagal pasirinktą apimtį.</span></div><div class="condition"><strong>TRUKMĖ:</strong><span>apie 3 mėnesiai nuo 20% avanso pervedimo dienos.</span></div><div class="condition"><strong>AUTORINĖS TEISĖS:</strong><span>Numatomos plačios iliustracijų ir personažų naudojimo teisės, išlaikant dailininko autorystę ir 5 % autorinį atlygį nuo komercinių pajamų. Detalios sąlygos derinamos sutartyje.</span></div><div class="condition"><strong>PATAISYMAI:</strong><span>Papildomi pataisymai ir pakeitimai, viršijantys sutartą darbų apimtį, apmokestinami papildomai; jų kaina suderinama iš anksto.</span></div></section></div></div>
+<script>const items=[
+{key:'cover',name:'Priekinis viršelis',price:1630,qty:1,color:'#6CAEB0'},
+{key:'ornament',name:'Atvartas (ornamentai)',price:470,qty:1,color:'#C4D6B4'},
+{key:'spread',name:'Atvartai',price:1050,qty:2,color:'#B8D0DB'},
+{key:'full',name:'Pilni puslapiai',price:790,qty:3,color:'#A3BDB3'},
+{key:'half',name:'½ puslapio',price:470,qty:3,color:'#B9C9AE'},
+{key:'vignette',name:'Vinjetės',price:150,qty:3,color:'#F0E4B9'},
+{key:'back',name:'Galinis viršelis',price:460,qty:1,color:'#6CAEB0'},
+{key:'design',name:'Personažų kūrimas ir dizainas',price:2200,qty:1,color:'#bbc2c6'}
+];
+const eur=n=>new Intl.NumberFormat('lt-LT',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
+const colors={cover:'#6caeb0',ornament:'#c4d6b4',spread:'#b8d0db',full:'#a3bdb3',half:'#b9c9ae',vignette:'#f0e4b9',back:'#6caeb0'};
+const fixedKeys=new Set(['design']);const optionalKeys=new Set(['cover','ornament','back']);const defaults=items.map(x=>x.qty);const tbody=document.getElementById('rows');
+items.forEach((x,i)=>{const tr=document.createElement('tr');tr.style.background=colors[x.key]||'#bfc7c9';const field=fixedKeys.has(x.key)?'<span class="fixed"></span>':`<input type="number" min="0" max="${optionalKeys.has(x.key)?1:25}" step="1" value="${x.qty}" data-i="${i}" aria-label="${x.name}">`;tr.innerHTML=`<td>${x.name}</td><td>${field}</td><td>${eur(x.price)}</td><td id="sum${i}"></td>`;tbody.appendChild(tr)});
+tbody.addEventListener('input',e=>{if(!e.target.matches('input'))return;const item=items[+e.target.dataset.i];item.qty=Math.max(0,Math.min(optionalKeys.has(item.key)?1:25,Math.floor(Number(e.target.value)||0)));e.target.value=item.qty;render()});
+function resetAll(){items.forEach((x,i)=>x.qty=defaults[i]);document.querySelectorAll('input').forEach(x=>x.value=defaults[+x.dataset.i]);render()}
+const get=k=>items.find(x=>x.key===k).qty;
+function obj(kind,label=''){return {kind,label}}
+function build(){
+ // Viršelis ir galinis viršelis – atskiri viršelio paviršiai, ne knygos atvartų dalis.
+ // Todėl nereikia tuščio lapo nei prieš ornamentą, nei po jo kartojimo.
+ const original=Array.from({length:44},()=>obj('text'));
+ original[0]=obj('cover','VIRŠELIS');original[1]=obj('fixed','');
+ original[2]=obj('ornament','ATVARTAS ORNAMENTAI');original[3]=obj('ornament','ATVARTAS ORNAMENTAI');
+ original[4]=obj('fixed','');original[5]=obj('fixed','TAVO ISTORIJA');original[3]=obj('ornament','ATVARTAS ORNAMENTAI');
+ original[38]=obj('fixed','LEIDĖJO TEKSTAS');original[39]=obj('fixed','LEIDĖJO TEKSTAS');
+ original[40]=obj('ornament','ATVARTAS ORNAMENTAI');original[41]=obj('ornament','ATVARTAS ORNAMENTAI');
+ original[43]=obj('back','GALINIS');
+ for(const i of [6,14]){original[i]=obj('spread','ATVARTAS');original[i+1]=obj('spread','ATVARTAS')}
+ const preferred={full:[9,19,29],half:[12,24,34],vignette:[17,32]};
+ for(const key of Object.keys(preferred))for(const i of preferred[key])if(original[i].kind==='text')original[i]=obj(key,key==='full'?'PUSLAPIS':key==='half'?'½ PUSLAPIO':'VINJETĖ');
+ // Pašalinami tik du dirbtiniai tarpai: iškart po viršelio ir prieš galinį viršelį.
+ let pages=original.filter((_,i)=>i!==1&&i!==42); // 2–3: ornamentų atvartas, be teksto
+ // Viršeliai ir ornamento atvartai išlieka savo vietose net išjungti.
+ // Išjungta būsena pažymima pilkumu ir įstrižainės brūkšniu.
+ const countUnits=(arr,key)=>arr.filter(x=>x.kind===key).length/(key==='spread'?2:1);
+ for(const key of ['spread','full','half','vignette']){
+  let remove=Math.max(0,countUnits(pages,key)-get(key));
+  if(key==='spread'){
+   for(let i=pages.length-2;i>=0&&remove;i--)if(pages[i].kind==='spread'&&pages[i+1]?.kind==='spread'){pages.splice(i,2);remove--;i--}
+  }else for(let i=pages.length-1;i>=0&&remove;i--)if(pages[i].kind===key){pages.splice(i,1);remove--}
+ }
+ // Naujos mažos iliustracijos įterpiamos tarp teksto puslapių, paskirstant per knygą.
+ const insertIndex=(key,n,needed)=>{
+   const end=pages.findIndex(x=>x.label==='LEIDĖJO TEKSTAS');
+   const stop=end>=0?end:pages.length-(get('back')?1:0)-(get('ornament')?2:0);
+   const begin=Math.min(stop,Math.max(0,pages.findIndex(x=>x.label==='TAVO ISTORIJA')+1));
+   let gaps=[];
+   for(let j=begin+1;j<stop;j++){
+     if(pages[j-1]?.kind==='text'&&pages[j]?.kind==='text')gaps.push(j);
+   }
+   if(!gaps.length)for(let j=begin;j<stop;j++)if(pages[j]?.kind==='text')gaps.push(j);
+   if(!gaps.length)return stop;
+   const ratio=(n+1)/(needed+1);
+   return gaps[Math.min(gaps.length-1,Math.max(0,Math.floor(ratio*gaps.length)))];
+ };
+ for(const key of ['spread','full','half','vignette']){
+  const add=Math.max(0,get(key)-countUnits(pages,key));
+  for(let n=0;n<add;n++){
+   const at=insertIndex(key,n,add);
+   if(key==='spread')pages.splice(at,0,obj('spread','ATVARTAS'),obj('spread','ATVARTAS'));
+   else pages.splice(at,0,obj(key,key==='full'?'PUSLAPIS':key==='half'?'½ PUSLAPIO':'VINJETĖ'));
+  }
+ }
+ // Vidiniai atvartai grupuojami po du, tačiau papildomų tuščių lapų prie viršelių nėra.
+ // Jei atvartas prasidėtų dešinėje, perstumiamas turinio tekstinis puslapis.
+ let start=1; // Viršelio įjungimas / išjungimas nekeičia vidinių puslapių išdėstymo.
+ for(let i=start;i<pages.length-1;i++){
+  if(pages[i].kind==='spread'&&pages[i+1]?.kind==='spread'){
+   if((i-start)%2===1){let j=i+2;while(j<pages.length&&pages[j].kind!=='text'&&pages[j].kind!=='ornament')j++;if(j<pages.length&&pages[j].kind==='text'){const [t]=pages.splice(j,1);pages.splice(i,0,t);i++}}
+   i++;
+  }
+ }
+ // Trečioji vinjetė – 21 puslapyje, pusinė iliustracija – 38 puslapyje.
+ if(get('vignette')>=3 && pages[21]?.kind==='text'){
+   const source=pages.findLastIndex((p,i)=>i>21&&p.kind==='vignette');
+   if(source>=0)[pages[21],pages[source]]=[pages[source],pages[21]];
+ }
+ if(pages[37]?.kind==='half'&&pages[38]?.kind==='text'){
+   [pages[37],pages[38]]=[pages[38],pages[37]];
+ }
+ return {pages,textCount:pages.filter(x=>x.kind==='text').length};
+}
+function lines(){return '<div class="lines">'+Array.from({length:18},()=>'<i></i>').join('')+'</div>'}
+function pageHTML(p,i,left=false){const kind=p.kind;let inactive=['cover','back','ornament'].includes(kind)&&get(kind)===0;let content=kind==='text'?lines():kind==='blank'?'':kind==='fixed'?`<span style="font-size:7px;text-align:center">${p.label}</span>`:`<div class="illustration ${kind==='half'?'half':kind==='vignette'?'vignette':''}" style="background:${colors[kind]||'#fff'}">${p.label}</div>`;if(kind==='vignette'||kind==='half')content=lines()+content;const hy=(i*17%2===0)?'3%':'50%';const vx=8+((i*37+17)%38),vy=10+((i*23+11)%51);return `<div class="leaf ${inactive?'inactive':''} ${left?'left':''}" style="--vx:${vx}%;--vy:${vy}%;--hy:${hy}">${content}<span class="num">${i}</span></div>`}
+function render(){
+ let total=0;items.forEach((x,i)=>{let sum=x.price*x.qty;total+=sum;document.getElementById('sum'+i).textContent=eur(sum)});
+ document.getElementById('total').textContent=eur(total);
+ const {pages,textCount}=build();let out='';
+ // Viršeliai visada turi savo vietas; jų 0/1 nekeičia vidinių puslapių.
+ // Ornamentas ir jo kartojimas yra nedalomi dviejų gretimų puslapių atvartai.
+ const card=(title,inner)=>`<div class="spread"><div class="spreadname">${title}</div><div class="leaves">${inner}</div></div>`;
+ let idx=0;
+ if(pages[0]?.kind==='cover'){
+  out+=card('VIRŠELIS',`<div class="leaf blank outer"></div>${pageHTML(pages[0],0)}`);idx=1;
+ }
+ const end=pages.length-(pages[pages.length-1]?.kind==='back'?1:0);
+ for(let i=idx;i<end;){
+  const p=pages[i], next=pages[i+1];
+  if(p?.kind==='ornament'&&next?.kind==='ornament'){
+   out+=card('ATVARTAS (ORNAMENTAI)',pageHTML(p,i,true)+pageHTML(next,i+1));i+=2;continue;
+  }
+  // Neleidžiame, kad prieš ornamento porą būtų įtrauktas vienas jos puslapis.
+  if(next?.kind==='ornament'&&pages[i+2]?.kind==='ornament'){
+   out+=card(`${i}`,pageHTML(p,i,true)+'<div class="leaf blank"></div>');i++;continue;
+  }
+  if(p?.kind==='spread'&&next?.kind==='spread'){
+   out+=card('ATVARTAS',pageHTML(p,i,true)+pageHTML(next,i+1));i+=2;continue;
+  }
+  if(next?.kind==='spread'&&pages[i+2]?.kind==='spread'){
+   out+=card(`${i}`,pageHTML(p,i,true)+'<div class="leaf blank"></div>');i++;continue;
+  }
+  out+=card(`${i}–${Math.min(i+1,end-1)}`,pageHTML(p,i,true)+(i+1<end?pageHTML(next,i+1):'<div class="leaf blank"></div>'));i+=i+1<end?2:1;
+ }
+ if(end<pages.length)out+=card('GALINIS VIRŠELIS',pageHTML(pages[end],end)+'<div class="leaf blank outer"></div>');
+ // Lentelės pavadinimai išlieka be X; išjungta būsena matoma tik makete.
+ document.getElementById('book').innerHTML=out;
+
+
+}
+
+render();
+</script></body></html>
